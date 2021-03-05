@@ -16,6 +16,9 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
     private SensorManager mSensorManager;
     ConstraintLayout constraintLayout;
     private Sensor mSensor;
+    final float threshHold = 3.0f;
+    final float guessingToCorrectCutOff = -2.5f;
+    final float guessingToPassCutOff = 4.5f;
 
     TextView textView1;
     TextView textView2;
@@ -35,54 +38,55 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
     }
 
     private void initSensor() {
-    }
-
-    @Override
-    public void onAccuracyChanged(Sensor sensor, int accuracy) {
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
     }
 
     @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             mSensorManager.registerListener(this, mSensor,
                     SensorManager.SENSOR_DELAY_GAME);
         }
-
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-
-        // Don't receive any more updates from either sensor.
         mSensorManager.unregisterListener(this);
     }
 
-    // Get readings from accelerometer and magnetometer. To simplify calculations,
-    // consider storing these readings as unit vectors.
+
     @Override
     public void onSensorChanged(SensorEvent event) {
 
-        textView1.setText(event.values[0] + "");
-        textView2.setText(event.values[1] + "");
-        textView3.setText(event.values[2] + "");
-        float threshHold = 3.0f;
-        float guessingToCorrectCutOff = -2.5f;
-        float guessingToPassCutOff = 4.5f;
-        if ((event.values[2] < -3) && (Math.abs(guessingToCorrectCutOff - event.values[2]) > threshHold))  {
+        textView1.setText(String.format("%s", event.values[0]));
+        textView2.setText(String.format("%s", event.values[1]));
+        textView3.setText(String.format("%s", event.values[2]));
+
+        boolean canChangeToCorrect = Math.abs(guessingToCorrectCutOff - event.values[2]) > threshHold;
+        boolean canChangeToPass = Math.abs(guessingToPassCutOff - event.values[2]) > threshHold;
+        boolean canChangeToGuess = (Math.abs(guessingToCorrectCutOff - event.values[2]) > threshHold ||
+                Math.abs(guessingToPassCutOff - event.values[2]) > threshHold);
+
+        if ((event.values[2] < -3) && (canChangeToCorrect)) {
+            //Change screen to Correct
             constraintLayout.setBackgroundColor(getResources().getColor(R.color.purple_700));
-        } else if ((event.values[2] > 4) && (Math.abs(guessingToPassCutOff - event.values[2]) > threshHold)) {
+        } else if ((event.values[2] > 4) && (canChangeToPass)) {
+            //Change screen to Pass
             constraintLayout.setBackgroundColor(getResources().getColor(R.color.purple_200));
-        } else if ((guessingToPassCutOff > event.values[2] && event.values[2] > guessingToCorrectCutOff )
-                    && ((Math.abs(guessingToCorrectCutOff - event.values[2]) > threshHold) ||
-                        Math.abs(guessingToPassCutOff - event.values[2]) > threshHold)) {
+        } else if ((guessingToPassCutOff > event.values[2] && event.values[2] > guessingToCorrectCutOff)
+                && (canChangeToGuess)) {
+            //Change screen to Guessing mode
             constraintLayout.setBackgroundColor(getResources().getColor(R.color.white));
-        }
-        
+        } 
+
     }
 
 }
