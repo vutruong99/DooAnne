@@ -27,7 +27,7 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
         setContentView(R.layout.activity_game);
 
         initSensor();
-        
+
         textView1 = findViewById(R.id.X);
         textView2 = findViewById(R.id.Y);
         textView3 = findViewById(R.id.Z);
@@ -82,21 +82,7 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
                         Math.abs(guessingToPassCutOff - event.values[2]) > threshHold)) {
             constraintLayout.setBackgroundColor(getResources().getColor(R.color.white));
         }
-
-//        if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
-//            System.arraycopy(event.values, 0, accelerometerReading,
-//                    0, accelerometerReading.length);
-//
-//        } else if (event.sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD) {
-//            System.arraycopy(event.values, 0, magnetometerReading,
-//                    0, magnetometerReading.length);
-//
-//        }
-
-//        updateOrientationAngles();
+        
     }
-
-    // Compute the three orientation angles based on the most recent readings from
-    // the device's accelerometer and magnetometer.
 
 }
