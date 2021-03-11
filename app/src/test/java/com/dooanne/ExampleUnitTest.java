@@ -1,4 +1,4 @@
-package com.dooane;
+package com.dooanne;
 
 import org.junit.Test;
 
