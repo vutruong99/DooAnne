@@ -20,6 +20,7 @@ public class DeckViewModel extends AndroidViewModel {
     private DeckRepository mRepository;
 
     private LiveData<List<Deck>> mAllDecks;
+    private LiveData<Deck> mDeckById;
 
     public DeckViewModel (Application application) {
         super(application);
@@ -29,6 +30,9 @@ public class DeckViewModel extends AndroidViewModel {
 
     public LiveData<List<Deck>> getAllDecks() { return mAllDecks; }
 
+    public LiveData<Deck> getDeckById(int id) {
+        return mRepository.getDeckById(id);
+    }
     public void insert(Deck deck) { mRepository.insert(deck); }
 
 }

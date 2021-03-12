@@ -1,0 +1,63 @@
+<androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/gameBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:gravity="center"
+    android:background="@color/colorPrimary"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <com.github.rongi.rotate_layout.layout.RotateLayout
+        android:layout_width="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/gameTextRotation"
+        android:layout_height="wrap_content"
+        app:angle="-90">
+
+        <TextView
+            android:id="@+id/startingTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_48ssp"/>
+
+
+    </com.github.rongi.rotate_layout.layout.RotateLayout>
+
+    <com.github.rongi.rotate_layout.layout.RotateLayout
+        app:angle="-90"
+        android:layout_gravity="center"
+        android:id="@+id/gameTextRotation"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:gravity="center"
+            android:paddingTop="@dimen/_8sdp"
+            android:paddingBottom="@dimen/_8sdp"
+            android:paddingStart="@dimen/_32sdp"
+            android:paddingEnd="@dimen/_32sdp"
+            android:id="@+id/gameText"
+            android:textStyle="bold"
+            android:maxLines="3"
+            android:textSize="@dimen/_58ssp"
+            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/_32sdp" />
+
+
+    </com.github.rongi.rotate_layout.layout.RotateLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

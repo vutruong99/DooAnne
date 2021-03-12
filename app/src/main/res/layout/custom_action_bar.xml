@@ -1,6 +1,7 @@
 <?xml version = "1.0" encoding = "utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:id="@+id/custom_action_bar_card"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardElevation="@dimen/_2sdp"
     app:cardPreventCornerOverlap="false"

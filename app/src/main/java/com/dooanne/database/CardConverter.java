@@ -1,4 +1,4 @@
-package com.dooanne;
+package com.dooanne.database;
 
 import androidx.room.TypeConverter;
 

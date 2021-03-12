@@ -1,4 +1,4 @@
-package com.dooanne;
+package com.dooanne.database;
 
 import android.content.Context;
 
@@ -6,15 +6,14 @@ import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
-import androidx.room.TypeConverter;
 import androidx.room.TypeConverters;
+import androidx.room.migration.Migration;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-import com.dooanne.model.Card;
+import com.dooanne.R;
 import com.dooanne.model.Deck;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -33,11 +32,8 @@ public abstract class DeckRoomDatabase extends RoomDatabase {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             DeckRoomDatabase.class, "deck_database")
-                            // Wipes and rebuilds instead of migrating
-                            // if no Migration object.
-                            // Migration is not part of this practical.
-                            .fallbackToDestructiveMigration()
-                            .addCallback(sRoomDatabaseCallback)
+                            .createFromAsset("databases/deck_database.db")
+                            .addMigrations(MIGRATION_1_2)
                             .build();
                 }
             }
@@ -45,6 +41,11 @@ public abstract class DeckRoomDatabase extends RoomDatabase {
         return INSTANCE;
     }
 
+    static final Migration MIGRATION_1_2 = new Migration(1, 2) { // From version 1 to version 2
+        @Override
+        public void migrate(SupportSQLiteDatabase database) {
+        }
+    };
 
 
     private static final RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback() {
@@ -62,8 +63,7 @@ public abstract class DeckRoomDatabase extends RoomDatabase {
 
                 ArrayList<String> food = new ArrayList<>();
 
-                dao.insert(new Deck(1,"brands","lol",R.drawable.brand,false,1,brands));
-                dao.insert(new Deck(2,"animals","lol",R.drawable.diet,false,1,food));
+                dao.insert(new Deck(1,"lol","lol", R.drawable.diet,"#123123",false,1,brands));
             });
         }
     };

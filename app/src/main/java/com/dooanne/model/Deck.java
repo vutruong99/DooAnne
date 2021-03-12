@@ -23,6 +23,9 @@ public class Deck {
     @ColumnInfo(name = "imageLink")
     private int imageLink;
 
+    @ColumnInfo(name = "color")
+    private String color;
+
     @ColumnInfo (name = "isPremium")
     private boolean isPremium;
 
@@ -32,11 +35,12 @@ public class Deck {
     @ColumnInfo (name = "cards")
     private ArrayList<String> cards;
 
-    public Deck(int id, String name, String description, int imageLink, boolean isPremium, int downloads, ArrayList<String> cards) {
+    public Deck(int id, String name, String description, int imageLink, String color, boolean isPremium, int downloads, ArrayList<String> cards) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.imageLink = imageLink;
+        this.color = color;
         this.isPremium = isPremium;
         this.downloads = downloads;
         this.cards = cards;
@@ -96,5 +100,13 @@ public class Deck {
 
     public void setCards(ArrayList<String> cards) {
         this.cards = cards;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 }

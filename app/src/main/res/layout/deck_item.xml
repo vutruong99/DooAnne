@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView app:cardElevation="@dimen/_4sdp"
-    app:cardCornerRadius="@dimen/_15sdp"
+<com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    app:cardElevation="@dimen/_4sdp"
+    android:clickable="true"
+    android:focusable="true"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:gravity="center"
         android:layout_gravity="center"
-        android:background="@color/colorPrimary"
         android:layout_width="match_parent"
+        android:id="@+id/deck_view"
+        android:background="@color/colorPrimary"
         android:orientation="vertical"
         android:layout_height="@dimen/_120sdp">
 
@@ -28,7 +31,8 @@
             android:layout_height="wrap_content"
             android:text="Đồ ăn Việt"
             android:textStyle="bold"
-            android:textSize="@dimen/_18ssp"
+            android:maxLines="2"
+            android:textSize="@dimen/_14ssp"
             android:textColor="@color/white"/>
 
     </LinearLayout>

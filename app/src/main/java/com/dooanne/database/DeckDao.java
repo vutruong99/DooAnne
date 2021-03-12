@@ -1,4 +1,4 @@
-package com.dooanne;
+package com.dooanne.database;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
@@ -20,5 +20,8 @@ public interface DeckDao {
 
     @Query("SELECT * FROM deck_table ORDER BY name ASC")
     LiveData<List<Deck>> getAllDecks();
+
+    @Query("SELECT * FROM deck_table WHERE deck_id = :id")
+    LiveData<Deck> getDeckById(int id);
 
 }

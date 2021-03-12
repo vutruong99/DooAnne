@@ -1,25 +1,22 @@
-package com.dooanne;
+package com.dooanne.viewmodel;
 
 import android.content.Context;
-import android.net.Uri;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dooanne.R;
 import com.dooanne.model.Deck;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -29,15 +26,35 @@ public class DeckAdapter extends RecyclerView.Adapter<DeckAdapter.DeckViewHolder
     private List<Deck> mDecks;
     private final LayoutInflater mInflater;
 
-    public DeckAdapter(Context context) { mInflater = LayoutInflater.from(context); }
 
-    public static class DeckViewHolder extends RecyclerView.ViewHolder {
+    private ItemClickListener mItemClickListener;
+    public interface ItemClickListener {
+        void onClick(Deck deck);
+    }
+
+
+    public DeckAdapter(Context context, ItemClickListener itemClickListener) {
+        mInflater = LayoutInflater.from(context);
+        this.mItemClickListener = itemClickListener;
+    }
+
+    class DeckViewHolder extends RecyclerView.ViewHolder {
         TextView deckName;
         ImageView deckImage;
+        LinearLayout deckView;
         public DeckViewHolder(@NonNull View itemView) {
             super(itemView);
             deckName = itemView.findViewById(R.id.deckName);
             deckImage = itemView.findViewById(R.id.deckImage);
+            deckView = itemView.findViewById(R.id.deck_view);
+
+            View.OnClickListener itemViewClick = new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mItemClickListener.onClick(mDecks.get(getAdapterPosition()));
+                }
+            };
+            itemView.setOnClickListener(itemViewClick);
         }
     }
 
@@ -54,7 +71,8 @@ public class DeckAdapter extends RecyclerView.Adapter<DeckAdapter.DeckViewHolder
         if (mDecks != null) {
             Deck deck = mDecks.get(position);
             holder.deckName.setText(deck.getName());
-            Picasso.with(holder.deckImage.getContext()).load(deck.getImageLink()).into(holder.deckImage);
+            holder.deckView.setBackgroundColor(Color.parseColor(deck.getColor()));
+            Picasso.get().load(deck.getImageLink()).into(holder.deckImage);
         } else {
             Log.i("DooAnne: Cards", "No Decks");
         }
