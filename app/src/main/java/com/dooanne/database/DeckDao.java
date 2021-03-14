@@ -24,4 +24,8 @@ public interface DeckDao {
     @Query("SELECT * FROM deck_table WHERE deck_id = :id")
     LiveData<Deck> getDeckById(int id);
 
+    @Query("SELECT * FROM deck_table WHERE name LIKE '%' || :keyword || '%' OR " +
+            "description LIKE '%' || :keyword || '%' ")
+    LiveData<List<Deck>> searchDeck(String keyword);
+
 }

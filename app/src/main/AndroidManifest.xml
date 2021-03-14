@@ -10,10 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DooAnne">
         <activity android:name=".ui.activities.BaseActivity">
-          <intent-filter>
-              <action android:name="android.intent.action.MAIN" />
-              <category android:name="android.intent.category.LAUNCHER" />
-          </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

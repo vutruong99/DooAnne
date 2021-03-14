@@ -31,6 +31,10 @@ public class DeckRepository {
         return mDeckDao.getDeckById(id);
     }
 
+    public LiveData<List<Deck>> searchDeck(String keyword) {
+        return mDeckDao.searchDeck(keyword);
+    }
+
     public void insert(final Deck deck) {
         DeckRoomDatabase.databaseWriteExecutor.execute(new Runnable() {
             @Override

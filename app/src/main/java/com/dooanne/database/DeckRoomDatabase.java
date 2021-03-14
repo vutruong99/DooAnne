@@ -55,6 +55,7 @@ public abstract class DeckRoomDatabase extends RoomDatabase {
             databaseWriteExecutor.execute(() -> {
                 //Pre-populate the data in the background
                 DeckDao dao = INSTANCE.deckDao();
+                dao.deleteAll();
 
                 ArrayList<String> brands = new ArrayList<>();
                 brands.add("Adidas");

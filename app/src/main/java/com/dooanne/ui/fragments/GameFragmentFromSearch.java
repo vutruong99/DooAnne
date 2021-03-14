@@ -17,11 +17,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.lifecycle.Observer;
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.dooanne.R;
-import com.dooanne.model.Deck;
 import com.dooanne.viewmodel.CardsViewModel;
 
 import java.util.ArrayList;
@@ -29,7 +28,7 @@ import java.util.Collections;
 import java.util.Locale;
 
 
-public class GameFragment extends BaseFragment {
+public class GameFragmentFromSearch extends Fragment {
     Context mAppContext;
     private SensorManager mSensorManager;
     private Sensor mSensor;
@@ -84,7 +83,7 @@ public class GameFragment extends BaseFragment {
                         mGameText.setText("HẾT GIỜ!");
                         mConstraintLayout.setBackgroundColor(mAppContext.getResources().getColor(R.color.colorPrimary));
                         mSensorManager.unregisterListener(sensorEventListener);
-                        mTimer.setVisibility(View.GONE);
+
                     }
                 }.start();
             }
@@ -97,6 +96,7 @@ public class GameFragment extends BaseFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         mCardsViewModel = ViewModelProviders.of(requireActivity()).get(CardsViewModel.class);
         mCardsViewModel.getCurrentDeck().observe(getViewLifecycleOwner(), deck -> {
+            Toast.makeText(getActivity(), deck.getName(), Toast.LENGTH_LONG).show();
             mCurrentCards = deck.getCards();
             Collections.shuffle(mCurrentCards);
         });
@@ -155,7 +155,6 @@ public class GameFragment extends BaseFragment {
                     mGameText.setText(mCurrentCards.get(mCardPosition));
                 } else {
                     mGameText.setText("Hết bài òi");
-                    mSensorManager.unregisterListener(sensorEventListener);
                 }
 
             }

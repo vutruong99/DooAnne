@@ -44,6 +44,22 @@
             android:layout_alignParentRight="true" />
 
 
+        <ImageView
+            android:contentDescription="@string/nothing"
+            android:id="@+id/help"
+            android:layout_alignParentLeft="true"
+            android:layout_width="@dimen/_30sdp"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_height="@dimen/_30sdp"
+            android:padding="@dimen/_4sdp"
+            android:src="@drawable/ic_help"
+            android:background="@drawable/button_click_effect_circle"
+            android:layout_alignParentStart="true" />
+
+
+
+
         <!--    <ImageView-->
         <!--        android:id="@+id/searchButton_AB"-->
         <!--        app:layout_constraintRight_toRightOf="parent"-->

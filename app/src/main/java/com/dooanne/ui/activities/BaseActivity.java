@@ -81,8 +81,8 @@ public class BaseActivity extends AppCompatActivity {
     };
 
     public void closeNavBarAndAppBar() {
-        mBottomNavigationView.setVisibility(View.GONE);
-        mCardView.setVisibility(View.GONE);
+        mBottomNavigationView.setVisibility(View.INVISIBLE);
+        mCardView.setVisibility(View.INVISIBLE);
     }
 
     public void showNavBarAndAppBar() {

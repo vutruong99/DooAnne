@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/deckInfoBackground"
+    android:background="@color/colorPrimary"
+    tools:context=".ui.fragments.DeckInfoFragment">
+
+    <TextView
+        android:id="@+id/deckName"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:text="Thể thao"
+        android:textSize="@dimen/_48ssp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/deckLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <ImageView
+        android:id="@+id/deckLogo"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:src="@drawable/sports"
+        android:layout_width="@dimen/_150sdp"
+        android:layout_height="@dimen/_150sdp"/>
+
+    <TextView
+        android:layout_margin="@dimen/_16sdp"
+        android:padding="@dimen/_8sdp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/deckLogo"
+        android:id="@+id/deckDescription"
+        android:layout_width="match_parent"
+        android:textAlignment="center"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_14ssp"
+        android:text="Hãy miêu tả những môn thể thao bằng cách gợi ý bằng lời hoặc thể hiện
+cách chơi của chúng nhé"
+        android:fontFamily="@font/roboto_medium"
+        android:gravity="center_horizontal" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/playButton"
+        android:layout_margin="@dimen/_16sdp"
+        android:text="CHƠI LUÔN"
+        app:rippleColor="@color/lightGrey"
+        android:textSize="@dimen/_16ssp"
+        android:textColor="@color/purple_700"
+        android:textAppearance="?attr/textAppearanceButton"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_48sdp"
+        app:backgroundTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
