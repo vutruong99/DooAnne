@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dooanne.R;
@@ -41,7 +42,7 @@ public class DeckAdapter extends RecyclerView.Adapter<DeckAdapter.DeckViewHolder
     class DeckViewHolder extends RecyclerView.ViewHolder {
         TextView deckName;
         ImageView deckImage;
-        LinearLayout deckView;
+        ConstraintLayout deckView;
         public DeckViewHolder(@NonNull View itemView) {
             super(itemView);
             deckName = itemView.findViewById(R.id.deckName);

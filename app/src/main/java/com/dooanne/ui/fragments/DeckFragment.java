@@ -23,6 +23,7 @@ import android.widget.ScrollView;
 import android.widget.Toast;
 
 import com.dooanne.DeckInfoDialog;
+import com.dooanne.ScrollToTop;
 import com.dooanne.ui.activities.BaseActivity;
 import com.dooanne.viewmodel.CardsViewModel;
 import com.dooanne.viewmodel.DeckAdapter;
@@ -36,10 +37,11 @@ import com.synnapps.carouselview.ImageListener;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 
-public class DeckFragment extends Fragment {
+public class DeckFragment extends Fragment  {
 
     private ArrayList<Deck> deckList;
     private CarouselView mCarouselView;
@@ -74,6 +76,8 @@ public class DeckFragment extends Fragment {
     }
 
     private void initView(View view) {
+        BaseActivity baseActivity =  (BaseActivity) requireActivity();
+        baseActivity.setListener(mScrollListener);
         scrollView = view.findViewById(R.id.scrollView);
         scrollView.smoothScrollTo(0,0);
         searchButton = requireActivity().findViewById(R.id.search_button);
@@ -188,9 +192,9 @@ public class DeckFragment extends Fragment {
                 "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
         deckList.add(new Deck(1,"Thể thao",desc,this.getResources().getIdentifier("sports","drawable",requireActivity().getPackageName()),"#6495ED",false,false,1,cards));
         deckList.add(new Deck(1,"Người nổi tiếng",desc,this.getResources().getIdentifier("teamwork","drawable",requireActivity().getPackageName()),"#9FE2BF",false,false,1,cards));
-        deckList.add(new Deck(1,"Công việc",desc,this.getResources().getIdentifier("suitcase","drawable",requireActivity().getPackageName()),"#DE3163",false,false,1,cards));
-        deckList.add(new Deck(1,"Đồ ăn",desc,this.getResources().getIdentifier("diet","drawable",requireActivity().getPackageName()),"#FF7F50",false,false,1,cards));
-        deckList.add(new Deck(1,"Thương hiệu",desc,this.getResources().getIdentifier("brand","drawable",requireActivity().getPackageName()),"#FFBF00",false,false,1,cards));
+        deckList.add(new Deck(1,"Nghề nghiệp",desc,this.getResources().getIdentifier("suitcase","drawable",requireActivity().getPackageName()),"#DE3163",false,false,1,cards));
+        deckList.add(new Deck(1,"Ẩm thực Việt Nam",desc,this.getResources().getIdentifier("diet","drawable",requireActivity().getPackageName()),"#FFBF00",false,false,1,cards));
+        deckList.add(new Deck(1,"Thương hiệu",desc,this.getResources().getIdentifier("brand","drawable",requireActivity().getPackageName()),"#FF7F50",false,false,1,cards));
     }
 
     private void createDecks() {
@@ -216,6 +220,13 @@ public class DeckFragment extends Fragment {
             ft.replace(R.id.big_fragment_container, searchFragment)
                     .addToBackStack(null)
                     .commit();
+        }
+    };
+
+    private ScrollToTop mScrollListener = new ScrollToTop() {
+        @Override
+        public void scrollToTop() {
+            scrollView.smoothScrollTo(0,0);
         }
     };
 

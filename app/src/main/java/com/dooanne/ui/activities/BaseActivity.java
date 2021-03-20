@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.dooanne.R;
+import com.dooanne.ScrollToTop;
 import com.dooanne.StepperAdapter;
 import com.dooanne.ui.fragments.DeckFragment;
 import com.dooanne.ui.fragments.ExploreFragment;
@@ -28,6 +29,7 @@ public class BaseActivity extends AppCompatActivity {
     TextView mPageTitle;
     ImageView mSearchButton;
     ImageView mHelpButton;
+    ScrollToTop scrollToTopInterface;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +53,12 @@ public class BaseActivity extends AppCompatActivity {
         mBottomNavigationView = findViewById(R.id.bottom_navigation);
         mCardView = findViewById(R.id.custom_action_bar);
         mBottomNavigationView.setOnNavigationItemSelectedListener(navListener);
+        mBottomNavigationView.setOnNavigationItemReselectedListener(onNavigationItemReselectedListener);
+    }
+
+    public void setListener(ScrollToTop listener)
+    {
+        this.scrollToTopInterface = listener ;
     }
 
     private final BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -86,6 +94,13 @@ public class BaseActivity extends AppCompatActivity {
 
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
             return true;
+        }
+    };
+
+    private final BottomNavigationView.OnNavigationItemReselectedListener onNavigationItemReselectedListener = new BottomNavigationView.OnNavigationItemReselectedListener() {
+        @Override
+        public void onNavigationItemReselected(@NonNull MenuItem item) {
+            scrollToTopInterface.scrollToTop();
         }
     };
 

@@ -3,7 +3,9 @@ package com.dooanne;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -13,6 +15,7 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -52,6 +55,7 @@ public class DeckInfoDialog extends AppCompatDialogFragment {
 
         View view = inflater.inflate(R.layout.fragment_deck_info, null);
 
+
         init(view);
         mCardsViewModel.getCurrentDeck().observe(requireActivity(), deck -> {
             currentDeck = deck;
@@ -59,17 +63,22 @@ public class DeckInfoDialog extends AppCompatDialogFragment {
             deckLogo.setImageResource(currentDeck.getImageLink());
             deckName.setText(currentDeck.getName());
             playButton.setTextColor(Color.parseColor(currentDeck.getColor()));
-            deckBackground.setBackgroundColor(Color.parseColor(currentDeck.getColor()));
+            Drawable backgroundDrawable = deckBackground.getBackground();
+            backgroundDrawable.setColorFilter(Color.parseColor(currentDeck.getColor()), PorterDuff.Mode.SRC_ATOP);
             liked = currentDeck.isFavorite();
 
         });
 
         builder.setView(view);
+
+        Dialog dialog = builder.create();
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
 //        Window window = builder.create().getWindow();
 //        window.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
 //        window.setGravity(Gravity.CENTER);
 
-        return builder.create();
+        return dialog;
     }
 
     private void init(View view) {

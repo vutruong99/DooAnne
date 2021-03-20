@@ -21,13 +21,12 @@
             app:pageColor="#00000000"
             app:radius="@dimen/_4sdp"
             app:slideInterval="5000"
-            app:strokeColor="#FF777777"
+            app:strokeColor="#FFF"
             app:strokeWidth="1dp" />
 
         <HorizontalScrollView
-            android:paddingStart="@dimen/_16sdp"
-            android:paddingEnd="@dimen/_16sdp"
-            android:layout_marginTop="@dimen/_8sdp"
+            android:scrollbars="none"
+            android:layout_marginTop="@dimen/_10sdp"
             android:id="@+id/chipsFilter"
             app:layout_constraintTop_toBottomOf="@id/carousel_view"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -42,6 +41,8 @@
                 android:layout_height="match_parent">
 
                 <com.google.android.material.chip.ChipGroup
+                    android:paddingStart="@dimen/_16sdp"
+                    android:paddingEnd="@dimen/_16sdp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
@@ -49,6 +50,7 @@
                         android:textColor="@color/white"
                         app:chipBackgroundColor="@color/colorPrimary"
                         android:layout_width="wrap_content"
+                        style="@style/TextAppearance.App.Body2"
                         android:layout_height="wrap_content"
                         android:text="Tiếng Việt"/>
 
@@ -56,6 +58,7 @@
                         android:textColor="@color/white"
                         app:chipBackgroundColor="@color/colorPrimary"
                         android:layout_width="wrap_content"
+                        android:textStyle="bold"
                         android:layout_height="wrap_content"
                         android:text="Ngoại ngữ"/>
 
@@ -63,6 +66,7 @@
                         android:textColor="@color/white"
                         app:chipBackgroundColor="@color/colorPrimary"
                         android:layout_width="wrap_content"
+                        android:textStyle="bold"
                         android:layout_height="wrap_content"
                         android:text="Bài xịn"/>
 
@@ -70,6 +74,7 @@
                         android:textColor="@color/white"
                         app:chipBackgroundColor="@color/colorPrimary"
                         android:layout_width="wrap_content"
+                        android:textStyle="bold"
                         android:layout_height="wrap_content"
                         android:text="Lựa chọn của code trưởng"/>
 
@@ -77,6 +82,7 @@
                         android:textColor="@color/white"
                         app:chipBackgroundColor="@color/colorPrimary"
                         android:layout_width="wrap_content"
+                        android:textStyle="bold"
                         android:layout_height="wrap_content"
                         android:text="Mới thêm"/>
                 </com.google.android.material.chip.ChipGroup>
