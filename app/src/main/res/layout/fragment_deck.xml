@@ -1,35 +1,98 @@
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:background="@color/backgroundPrimary"
-    android:layout_height="match_parent">
-
-
-    <com.synnapps.carouselview.CarouselView
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/recycler_view_deck"
-        android:id="@+id/carousel_view"
+    android:fillViewport="true"
+    android:id="@+id/scrollView"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_150sdp"
-        app:fillColor="#FFFFFFFF"
-        app:pageColor="#00000000"
-        app:radius="@dimen/_4sdp"
-        app:slideInterval="5000"
-        app:strokeColor="#FF777777"
-        app:strokeWidth="1dp" />
+        android:background="@color/backgroundPrimary"
+        android:layout_height="wrap_content">
 
+        <com.synnapps.carouselview.CarouselView
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/chipsFilter"
+            android:id="@+id/carousel_view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_150sdp"
+            app:fillColor="#FFFFFFFF"
+            app:pageColor="#00000000"
+            app:radius="@dimen/_4sdp"
+            app:slideInterval="5000"
+            app:strokeColor="#FF777777"
+            app:strokeWidth="1dp" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layoutAnimation="@anim/layout_animation"
-        android:id="@+id/recycler_view_deck"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/carousel_view"
-        tools:listitem="@layout/deck_item" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <HorizontalScrollView
+            android:paddingStart="@dimen/_16sdp"
+            android:paddingEnd="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:id="@+id/chipsFilter"
+            app:layout_constraintTop_toBottomOf="@id/carousel_view"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/recycler_view_deck"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <com.google.android.material.chip.ChipGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.google.android.material.chip.Chip
+                        android:textColor="@color/white"
+                        app:chipBackgroundColor="@color/colorPrimary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tiếng Việt"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:textColor="@color/white"
+                        app:chipBackgroundColor="@color/colorPrimary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ngoại ngữ"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:textColor="@color/white"
+                        app:chipBackgroundColor="@color/colorPrimary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Bài xịn"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:textColor="@color/white"
+                        app:chipBackgroundColor="@color/colorPrimary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Lựa chọn của code trưởng"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:textColor="@color/white"
+                        app:chipBackgroundColor="@color/colorPrimary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Mới thêm"/>
+                </com.google.android.material.chip.ChipGroup>
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layoutAnimation="@anim/layout_animation"
+            android:id="@+id/recycler_view_deck"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/chipsFilter"
+            tools:listitem="@layout/deck_item" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

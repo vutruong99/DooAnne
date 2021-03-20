@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 import com.dooanne.DeckInfoDialog;
@@ -48,6 +49,7 @@ public class DeckFragment extends Fragment {
     private CardsViewModel mCardsViewModel;
     private ImageView searchButton;
     private ImageView mHelpButton;
+    private ScrollView scrollView;
 
     int[] sampleImages = {R.drawable.beach1, R.drawable.beach2, R.drawable.river, R.drawable.lake, R.drawable.flowers};
 
@@ -72,6 +74,8 @@ public class DeckFragment extends Fragment {
     }
 
     private void initView(View view) {
+        scrollView = view.findViewById(R.id.scrollView);
+        scrollView.smoothScrollTo(0,0);
         searchButton = requireActivity().findViewById(R.id.search_button);
         searchButton.setOnClickListener(searchClickListener);
         mHelpButton = requireActivity().findViewById(R.id.help);
@@ -86,18 +90,20 @@ public class DeckFragment extends Fragment {
                         .commit();
             }
         });
+
+
     }
 
     private void getDecksFromDatabase() {
         deckList = new ArrayList<>();
         initDecks();
         mDeckViewModel = ViewModelProviders.of(this).get(DeckViewModel.class);
-//        mDeckViewModel.getAllDecks().observe(getViewLifecycleOwner(), new Observer<List<Deck>>() {
-//            @Override
-//            public void onChanged(List<Deck> decks) {
-//
-//            }
-//        });
+        mDeckViewModel.getAllDecks().observe(getViewLifecycleOwner(), new Observer<List<Deck>>() {
+            @Override
+            public void onChanged(List<Deck> decks) {
+
+            }
+        });
     }
 
     private void initCarouselView(View view) {
@@ -111,7 +117,12 @@ public class DeckFragment extends Fragment {
     private void initRecyclerView(View view) {
         mRecyclerView = view.findViewById(R.id.recycler_view_deck);
         mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2) {
+            @Override
+            public boolean canScrollVertically() {
+                return false;
+            }
+        });
 
         mDeckAdapter = new DeckAdapter(getActivity(), mItemClickListener);
 
@@ -179,7 +190,7 @@ public class DeckFragment extends Fragment {
         deckList.add(new Deck(1,"Người nổi tiếng",desc,this.getResources().getIdentifier("teamwork","drawable",requireActivity().getPackageName()),"#9FE2BF",false,false,1,cards));
         deckList.add(new Deck(1,"Công việc",desc,this.getResources().getIdentifier("suitcase","drawable",requireActivity().getPackageName()),"#DE3163",false,false,1,cards));
         deckList.add(new Deck(1,"Đồ ăn",desc,this.getResources().getIdentifier("diet","drawable",requireActivity().getPackageName()),"#FF7F50",false,false,1,cards));
-        deckList.add(new Deck(1,"Thương hiệu",desc,this.getResources().getIdentifier("brand","drawable",requireActivity().getPackageName()),"#FFBF00    ",false,false,1,cards));
+        deckList.add(new Deck(1,"Thương hiệu",desc,this.getResources().getIdentifier("brand","drawable",requireActivity().getPackageName()),"#FFBF00",false,false,1,cards));
     }
 
     private void createDecks() {
