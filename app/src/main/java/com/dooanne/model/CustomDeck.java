@@ -1,16 +1,15 @@
 package com.dooanne.model;
 
-import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import java.util.ArrayList;
 
-@Entity(tableName = "deck_table")
-public class Deck {
+@Entity(tableName = "custom_deck_table")
+public class CustomDeck {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name= "deck_id")
     private int id;
 
@@ -26,28 +25,19 @@ public class Deck {
     @ColumnInfo(name = "color")
     private String color;
 
-    @ColumnInfo (name = "isPremium")
-    private boolean isPremium;
-
     @ColumnInfo (name = "isFavorite")
     private boolean isFavorite;
-
-    @ColumnInfo (name = "downloads")
-    private int downloads;
 
     @ColumnInfo (name = "cards")
     private ArrayList<String> cards;
 
-    public Deck(int id, String name, String description, int imageLink, String color,
-                boolean isPremium, boolean isFavorite, int downloads, ArrayList<String> cards) {
+    public CustomDeck(int id, String name, String description, int imageLink, String color, boolean isFavorite, ArrayList<String> cards) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.imageLink = imageLink;
         this.color = color;
-        this.isPremium = isPremium;
         this.isFavorite = isFavorite;
-        this.downloads = downloads;
         this.cards = cards;
     }
 
@@ -79,32 +69,8 @@ public class Deck {
         return imageLink;
     }
 
-    public void setImageLink(int image) {
-        this.imageLink = image;
-    }
-
-    public boolean isPremium() {
-        return isPremium;
-    }
-
-    public void setPremium(boolean premium) {
-        isPremium = premium;
-    }
-
-    public int getDownloads() {
-        return downloads;
-    }
-
-    public void setDownloads(int downloads) {
-        this.downloads = downloads;
-    }
-
-    public ArrayList<String> getCards() {
-        return cards;
-    }
-
-    public void setCards(ArrayList<String> cards) {
-        this.cards = cards;
+    public void setImageLink(int imageLink) {
+        this.imageLink = imageLink;
     }
 
     public String getColor() {
@@ -122,4 +88,14 @@ public class Deck {
     public void setFavorite(boolean favorite) {
         isFavorite = favorite;
     }
+
+    public ArrayList<String> getCards() {
+        return cards;
+    }
+
+    public void setCards(ArrayList<String> cards) {
+        this.cards = cards;
+    }
 }
+
+

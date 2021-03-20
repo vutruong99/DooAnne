@@ -21,6 +21,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.dooanne.DeckInfoDialog;
 import com.dooanne.ui.activities.BaseActivity;
 import com.dooanne.viewmodel.CardsViewModel;
 import com.dooanne.viewmodel.DeckAdapter;
@@ -46,6 +47,7 @@ public class DeckFragment extends Fragment {
     private DeckViewModel mDeckViewModel;
     private CardsViewModel mCardsViewModel;
     private ImageView searchButton;
+    private ImageView mHelpButton;
 
     int[] sampleImages = {R.drawable.beach1, R.drawable.beach2, R.drawable.river, R.drawable.lake, R.drawable.flowers};
 
@@ -72,18 +74,30 @@ public class DeckFragment extends Fragment {
     private void initView(View view) {
         searchButton = requireActivity().findViewById(R.id.search_button);
         searchButton.setOnClickListener(searchClickListener);
+        mHelpButton = requireActivity().findViewById(R.id.help);
+        mHelpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TutorialFragment tutorialFragment = new TutorialFragment();
+                FragmentTransaction ft = requireActivity().getSupportFragmentManager().beginTransaction();
+                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                ft.replace(R.id.big_fragment_container, tutorialFragment)
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
     }
 
     private void getDecksFromDatabase() {
+        deckList = new ArrayList<>();
+        initDecks();
         mDeckViewModel = ViewModelProviders.of(this).get(DeckViewModel.class);
-        mDeckViewModel.getAllDecks().observe(getViewLifecycleOwner(), new Observer<List<Deck>>() {
-            @Override
-            public void onChanged(List<Deck> decks) {
-                mDeckAdapter.setDecks(decks);
-                mDeckAdapter.notifyDataSetChanged();
-                mRecyclerView.scheduleLayoutAnimation();
-            }
-        });
+//        mDeckViewModel.getAllDecks().observe(getViewLifecycleOwner(), new Observer<List<Deck>>() {
+//            @Override
+//            public void onChanged(List<Deck> decks) {
+//
+//            }
+//        });
     }
 
     private void initCarouselView(View view) {
@@ -128,6 +142,9 @@ public class DeckFragment extends Fragment {
                 }
             }
         });
+        mDeckAdapter.setDecks(deckList);
+        mDeckAdapter.notifyDataSetChanged();
+        mRecyclerView.scheduleLayoutAnimation();
         mRecyclerView.setAdapter(mDeckAdapter);
 
 
@@ -156,11 +173,13 @@ public class DeckFragment extends Fragment {
         cards.add("Đá cầu");
         cards.add("Cờ vua");
         cards.add("Bơi");
-        deckList.add(new Deck(1,"Thể thao","d",this.getResources().getIdentifier("sports","drawable",requireActivity().getPackageName()),"#594F4F",false,1,cards));
-        deckList.add(new Deck(1,"Người nổi tiếng","d",this.getResources().getIdentifier("teamwork","drawable",requireActivity().getPackageName()),"#547980",false,1,cards));
-        deckList.add(new Deck(1,"Công việc","d",this.getResources().getIdentifier("suitcase","drawable",requireActivity().getPackageName()),"#45ADA8",false,1,cards));
-        deckList.add(new Deck(1,"Đồ ăn","d",this.getResources().getIdentifier("diet","drawable",requireActivity().getPackageName()),"#9DE0AD",false,1,cards));
-        deckList.add(new Deck(1,"Thương hiệu","d",this.getResources().getIdentifier("brand","drawable",requireActivity().getPackageName()),"#FE4365",false,1,cards));
+        String desc = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, " +
+                "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+        deckList.add(new Deck(1,"Thể thao",desc,this.getResources().getIdentifier("sports","drawable",requireActivity().getPackageName()),"#6495ED",false,false,1,cards));
+        deckList.add(new Deck(1,"Người nổi tiếng",desc,this.getResources().getIdentifier("teamwork","drawable",requireActivity().getPackageName()),"#9FE2BF",false,false,1,cards));
+        deckList.add(new Deck(1,"Công việc",desc,this.getResources().getIdentifier("suitcase","drawable",requireActivity().getPackageName()),"#DE3163",false,false,1,cards));
+        deckList.add(new Deck(1,"Đồ ăn",desc,this.getResources().getIdentifier("diet","drawable",requireActivity().getPackageName()),"#FF7F50",false,false,1,cards));
+        deckList.add(new Deck(1,"Thương hiệu",desc,this.getResources().getIdentifier("brand","drawable",requireActivity().getPackageName()),"#FFBF00    ",false,false,1,cards));
     }
 
     private void createDecks() {
@@ -169,11 +188,8 @@ public class DeckFragment extends Fragment {
     private final DeckAdapter.ItemClickListener mItemClickListener = new DeckAdapter.ItemClickListener() {
         @Override
         public void onClick(Deck deck) {
-            DeckInfoFragment deckInfoFragment = new DeckInfoFragment();
-            requireActivity().getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.big_fragment_container, deckInfoFragment)
-                    .addToBackStack(null)
-                    .commit();
+            DeckInfoDialog deckInfoFragment = new DeckInfoDialog();
+            deckInfoFragment.show(getParentFragmentManager(), "deckinfo");
             mCardsViewModel.setCurrentDeck(deck);
 
         }

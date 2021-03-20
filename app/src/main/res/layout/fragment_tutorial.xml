@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.fragments.TutorialFragment">
+
+    <com.synnapps.carouselview.CarouselView
+        android:id="@+id/customCarousel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:fillColor="#FFFFFFFF"
+        app:pageColor="#00000000"
+        app:radius="6dp"
+        app:slideInterval="0"
+        app:strokeColor="#FFF"
+        app:strokeWidth="1dp"/>
+
+<!--    <androidx.viewpager.widget.ViewPager-->
+<!--        android:id="@+id/tutorial_view_pager"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintBottom_toTopOf="@id/dot_layout"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"/>-->
+<!--    -->
+<!--    <LinearLayout-->
+<!--        android:gravity="center"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:id="@+id/dot_layout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="@dimen/_100sdp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/tutorial_view_pager">-->
+
+<!--        <TextView-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:textColor="@color/white"/>-->
+<!--    </LinearLayout>-->
+
+
+</LinearLayout>

@@ -1,6 +1,7 @@
 package com.dooanne.repos;
 
 import android.app.Application;
+import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
 
@@ -43,6 +44,17 @@ public class DeckRepository {
             }
         });
     }
+
+    public void update(Deck deck) {
+        DeckRoomDatabase.databaseWriteExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+                mDeckDao.update(deck);
+            }
+        });
+    }
+
+
 
 
 }

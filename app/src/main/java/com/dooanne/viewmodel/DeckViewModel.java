@@ -35,6 +35,8 @@ public class DeckViewModel extends AndroidViewModel {
 
     public void insert(Deck deck) { mRepository.insert(deck); }
 
+    public void update(Deck deck) { mRepository.update(deck);}
+
     public LiveData<List<Deck>> getSearchedDecks(String keyword) {
         return mRepository.searchDeck(keyword);
     }

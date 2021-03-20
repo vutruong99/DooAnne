@@ -11,13 +11,14 @@ import androidx.room.migration.Migration;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.dooanne.R;
+import com.dooanne.model.CustomDeck;
 import com.dooanne.model.Deck;
 
 import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Deck.class}, version = 2, exportSchema = false)
+@Database(entities = {Deck.class, CustomDeck.class}, version = 1, exportSchema = false)
 @TypeConverters({CardConverter.class})
 public abstract class DeckRoomDatabase extends RoomDatabase {
     public abstract DeckDao deckDao();
@@ -31,40 +32,28 @@ public abstract class DeckRoomDatabase extends RoomDatabase {
             synchronized (DeckRoomDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            DeckRoomDatabase.class, "deck_database")
-                            .createFromAsset("databases/deck_database.db")
-                            .addMigrations(MIGRATION_1_2)
-                            .build();
+                            DeckRoomDatabase.class, "decks_database").build();
                 }
             }
+//                            .createFromAsset("databases/deck_database.db")
+//                            .addMigrations(MIGRATION_1_2)
         }
         return INSTANCE;
     }
 
-    static final Migration MIGRATION_1_2 = new Migration(1, 2) { // From version 1 to version 2
+    static final Migration MIGRATION_1_2 = new Migration(1,2) { // From version 1 to version 2
         @Override
-        public void migrate(SupportSQLiteDatabase database) {
+        public void migrate(@NonNull SupportSQLiteDatabase database) {
         }
     };
-
 
     private static final RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback() {
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
             databaseWriteExecutor.execute(() -> {
-                //Pre-populate the data in the background
                 DeckDao dao = INSTANCE.deckDao();
                 dao.deleteAll();
-
-                ArrayList<String> brands = new ArrayList<>();
-                brands.add("Adidas");
-                brands.add("Nike");
-                brands.add("Highlands");
-
-                ArrayList<String> food = new ArrayList<>();
-
-                dao.insert(new Deck(1,"lol","lol", R.drawable.diet,"#123123",false,1,brands));
             });
         }
     };

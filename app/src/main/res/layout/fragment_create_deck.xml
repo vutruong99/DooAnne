@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundPrimary"
+    android:clickable="true"
+    android:focusable="true"
+    tools:context=".ui.fragments.CreateDeckFragment">
+
+    <com.stepstone.stepper.StepperLayout
+        app:ms_backButtonText="QUAY LẠI"
+        app:ms_nextButtonText="TIẾP THEO"
+        app:ms_completeButtonText="HOÀN TẤT"
+        app:ms_activeStepColor="@color/colorPrimary"
+        app:ms_backButtonColor="@color/colorPrimary"
+        app:ms_nextButtonColor="@color/colorPrimary"
+        android:id="@+id/stepperLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:ms_stepperType="progress_bar" />
+</LinearLayout>

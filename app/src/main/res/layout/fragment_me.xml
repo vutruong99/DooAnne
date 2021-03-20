@@ -22,7 +22,7 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.viewpager.widget.ViewPager
+    <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager"
         app:layout_constraintTop_toBottomOf="@id/appBarLayout"
         app:layout_constraintLeft_toLeftOf="parent"

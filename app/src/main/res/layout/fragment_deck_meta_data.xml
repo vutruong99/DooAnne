@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.fragments.DeckMetaDataFragment">
+
+    <TextView
+        android:id="@+id/deckNameTV"
+        android:layout_margin="@dimen/_16sdp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/deckNamET"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_18ssp"
+        android:text="Tên bộ"/>
+
+    <EditText
+        android:imeOptions="actionDone"
+        android:textCursorDrawable="@null"
+        android:layout_margin="@dimen/_16sdp"
+        android:padding="@dimen/_8sdp"
+        android:textSize="@dimen/_20sdp"
+        android:inputType="text"
+        android:textColor="@color/black"
+        android:maxLines="1"
+        android:background="@drawable/edit_text_border"
+        android:id="@+id/deckNamET"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/deckNameTV"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_64sdp"/>
+
+    <TextView
+        android:id="@+id/deckColorTV"
+        app:layout_constraintBottom_toTopOf="@id/colorPickerBtn"
+        android:layout_margin="@dimen/_16sdp"
+        app:layout_constraintTop_toBottomOf="@id/deckNamET"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_18ssp"
+        android:text="Chọn màu"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="match_parent"
+        android:id="@+id/colorPickerBtn"
+        android:layout_height="@dimen/_70sdp"
+        app:layout_constraintTop_toBottomOf="@id/deckColorTV"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_margin="@dimen/_16sdp"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

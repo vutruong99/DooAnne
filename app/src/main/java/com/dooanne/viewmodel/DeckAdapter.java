@@ -71,7 +71,7 @@ public class DeckAdapter extends RecyclerView.Adapter<DeckAdapter.DeckViewHolder
         if (mDecks != null) {
             Deck deck = mDecks.get(position);
             holder.deckName.setText(deck.getName());
-//            holder.deckView.setBackgroundColor(Color.parseColor(deck.getColor()));
+            holder.deckView.setBackgroundColor(Color.parseColor(deck.getColor()));
             Picasso.get().load(deck.getImageLink()).into(holder.deckImage);
         } else {
             Log.i("DooAnne: Cards", "No Decks");

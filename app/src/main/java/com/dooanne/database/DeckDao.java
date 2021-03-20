@@ -5,6 +5,7 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Transaction;
+import androidx.room.Update;
 
 import com.dooanne.model.Deck;
 
@@ -18,6 +19,10 @@ public interface DeckDao {
     @Query("DELETE FROM deck_table")
     void deleteAll();
 
+    @Update
+        //(onConflict = OnConflictStrategy.REPLACE)
+    void update(Deck deck);
+
     @Query("SELECT * FROM deck_table ORDER BY name ASC")
     LiveData<List<Deck>> getAllDecks();
 
@@ -27,5 +32,8 @@ public interface DeckDao {
     @Query("SELECT * FROM deck_table WHERE name LIKE '%' || :keyword || '%' OR " +
             "description LIKE '%' || :keyword || '%' ")
     LiveData<List<Deck>> searchDeck(String keyword);
+
+
+
 
 }

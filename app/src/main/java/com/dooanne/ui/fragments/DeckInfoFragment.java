@@ -55,7 +55,6 @@ public class DeckInfoFragment extends BaseFragment {
         playButton.setOnClickListener(v -> {
             GameFragment gameFragment = new GameFragment();
             FragmentTransaction ft = requireActivity().getSupportFragmentManager().beginTransaction();
-            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
             ft.replace(R.id.big_fragment_container, gameFragment)
                     .addToBackStack(null)
                     .commit();

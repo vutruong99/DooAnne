@@ -48,7 +48,7 @@
             android:paddingEnd="@dimen/_32sdp"
             android:id="@+id/gameText"
             android:textStyle="bold"
-            android:text="dkaosdasd"
+            android:text="nhất giống nhì phân tam cần tứ giống"
             android:maxLines="3"
             android:textSize="@dimen/_58ssp"
             android:textColor="@color/white"
@@ -75,6 +75,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"
+            android:text="60"
             android:textColor="@color/white"
             android:textSize="@dimen/_28ssp"/>
     </com.github.rongi.rotate_layout.layout.RotateLayout>
