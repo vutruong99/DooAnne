@@ -4,6 +4,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <TextView
+        android:id="@+id/welcomeText"
+        android:paddingStart="@dimen/_16sdp"
+        android:paddingTop="@dimen/_4sdp"
+        android:paddingEnd="@dimen/_16sdp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/addDeckButton"
+        android:layout_width="wrap_content"
+        android:textColor="@color/newBlack"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/raleway_medium"
+        android:textSize="@dimen/_16ssp"
+        android:text="@string/custom_deck_text"/>
     <com.google.android.material.button.MaterialButton
         android:textSize="@dimen/_16ssp"
         android:padding="@dimen/_8sdp"
@@ -11,7 +26,7 @@
         android:textAllCaps="false"
         app:layout_constraintBottom_toTopOf="@id/recycler_view_deck"
         android:id="@+id/addDeckButton"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/welcomeText"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:text="@string/create_new_deck"

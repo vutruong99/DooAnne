@@ -21,11 +21,13 @@
             android:layout_height="@dimen/_24sdp"
             android:focusable="true"
             android:clickable="true"
+            app:tint="@color/white"
             android:background="@drawable/button_click_effect_circle_2"
             android:src="@drawable/ic_back_arrow"
             android:layout_alignParentLeft="true" />
 
         <ImageView
+            app:tint="@color/white"
             android:layout_alignParentEnd="true"
             android:layout_width="@dimen/_24sdp"
             android:layout_height="@dimen/_24sdp"
@@ -52,7 +54,7 @@
         android:text="Thể thao"
         android:textSize="@dimen/_20ssp"
         android:textColor="@color/white"
-        android:textStyle="bold"
+        android:fontFamily="@font/raleway_bold"
         app:layout_constraintBottom_toTopOf="@id/playButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
@@ -71,6 +73,7 @@
             android:textAlignment="textStart"
             android:layout_height="@dimen/_120sdp"
             android:textColor="@color/white"
+            android:fontFamily="@font/raleway_medium"
             android:textSize="@dimen/_11ssp"
             android:text="Tất cả những môn thể thao từng xuất hiện tại các
 thế vận hội Olympics đều ở đây, hãy dùng hành động hoặc lời nói để diễn tả chúng nhé"
@@ -91,10 +94,9 @@ thế vận hội Olympics đều ở đây, hãy dùng hành động hoặc l�
             android:letterSpacing="0"
             android:layout_marginEnd="@dimen/_8sdp"
             android:textAllCaps="false"
-            app:rippleColor="@color/lightGrey"
             android:layout_toStartOf="@id/likeButton"
             android:textSize="@dimen/_16ssp"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/white"
             android:textAppearance="?attr/textAppearanceButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

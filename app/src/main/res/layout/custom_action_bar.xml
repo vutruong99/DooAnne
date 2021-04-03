@@ -1,63 +1,64 @@
-<?xml version = "1.0" encoding = "utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
     android:layout_width="match_parent"
-    android:id="@+id/custom_action_bar_card"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardElevation="@dimen/_2sdp"
-    app:cardPreventCornerOverlap="false"
-    android:layout_height="wrap_content">
+    android:layout_height="@dimen/_48sdp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <RelativeLayout
-        xmlns:tools="http://schemas.android.com/tools"
+    <RelativeLayout xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_48sdp"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="@color/white"
         android:baselineAligned="false"
-        android:paddingEnd="@dimen/_16sdp"
-        android:paddingStart="@dimen/_16sdp"
-        android:paddingTop="@dimen/_8sdp"
-        android:paddingBottom="@dimen/_8sdp"
         android:gravity="center_vertical"
         android:weightSum="1">
 
         <TextView
+            android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:fontFamily="@font/raleway_black"
             android:text="@string/decks"
-            android:id="@+id/title"
-            android:layout_centerInParent="true"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/newBlack"
             android:textSize="@dimen/_18ssp"
-            android:textStyle="bold"
-            tools:ignore="RelativeOverlap" />
+            tools:ignore="RelativeOverlap"
+            android:layout_marginLeft="@dimen/_16sdp" />
 
         <ImageView
-            android:contentDescription="@string/nothing"
+            android:layout_marginEnd="@dimen/_16sdp"
+            android:layout_centerVertical="true"
             android:id="@+id/search_button"
-            android:layout_alignParentEnd="true"
+            app:tint="@color/newBlack"
             android:layout_width="@dimen/_30sdp"
-            android:clickable="true"
-            android:focusable="true"
             android:layout_height="@dimen/_30sdp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/button_click_effect_circle"
+            android:clickable="true"
+            android:contentDescription="@string/nothing"
+            android:focusable="true"
             android:padding="@dimen/_6sdp"
             android:src="@drawable/ic_search"
-            android:background="@drawable/button_click_effect_circle"
-            android:layout_alignParentRight="true" />
+            android:layout_marginRight="@dimen/_16sdp" />
 
 
         <ImageView
-            android:contentDescription="@string/nothing"
+            android:layout_centerVertical="true"
             android:id="@+id/help"
-            android:layout_alignParentLeft="true"
+            app:tint="@color/newBlack"
             android:layout_width="@dimen/_30sdp"
-            android:clickable="true"
-            android:focusable="true"
             android:layout_height="@dimen/_30sdp"
-            android:padding="@dimen/_4sdp"
-            android:src="@drawable/ic_help"
+            android:layout_toStartOf="@id/search_button"
+            android:layout_toLeftOf="@id/search_button"
             android:background="@drawable/button_click_effect_circle"
-            android:layout_alignParentStart="true" />
-
-
+            android:clickable="true"
+            android:contentDescription="@string/nothing"
+            android:focusable="true"
+            android:padding="@dimen/_4sdp"
+            android:src="@drawable/ic_help" />
 
 
         <!--    <ImageView-->
@@ -72,4 +73,14 @@
         <!--    </ImageView>-->
 
     </RelativeLayout>
-</androidx.cardview.widget.CardView>
+
+    <View
+        android:visibility="invisible"
+        android:id="@+id/scrollSeparator"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_2sdp"
+        android:background="@drawable/scroll_separator_shadow"
+        android:layout_alignParentBottom="true"/>
+</RelativeLayout>
+
+

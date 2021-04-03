@@ -7,8 +7,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -20,16 +18,14 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.dooanne.R;
 import com.dooanne.model.Deck;
 import com.dooanne.viewmodel.CardsViewModel;
-import com.dooanne.viewmodel.DeckAdapter;
+import com.dooanne.adapters.DeckAdapter;
 import com.dooanne.viewmodel.DeckViewModel;
 
 import java.util.List;

@@ -1,23 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/backgroundPrimary"
+    android:background="@color/white"
     android:clickable="true"
     android:focusable="true"
     tools:context=".ui.fragments.CreateDeckFragment">
 
+
+    <RelativeLayout
+        android:id="@+id/create_deck_action_bar"
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_48sdp"
+        android:background="@color/white"
+        android:baselineAligned="false"
+        android:gravity="center_vertical"
+        android:weightSum="1">
+
+
+        <ImageView
+            android:focusable="true"
+            android:clickable="true"
+            app:tint="@color/black"
+            android:background="@drawable/button_click_effect_circle"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_close_2"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:contentDescription="@string/nothing"
+            android:layout_marginLeft="@dimen/_16sdp">
+        </ImageView>
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginLeft="@dimen/_16sdp"
+            android:fontFamily="@font/raleway_black"
+            android:text="Tạo bộ mới"
+            android:textColor="@color/newBlack"
+            android:textSize="@dimen/_18ssp"
+            tools:ignore="RelativeOverlap" />
+
+    </RelativeLayout>
+
     <com.stepstone.stepper.StepperLayout
-        app:ms_backButtonText="QUAY LẠI"
-        app:ms_nextButtonText="TIẾP THEO"
-        app:ms_completeButtonText="HOÀN TẤT"
-        app:ms_activeStepColor="@color/colorPrimary"
-        app:ms_backButtonColor="@color/colorPrimary"
-        app:ms_nextButtonColor="@color/colorPrimary"
+        android:layout_below="@id/create_deck_action_bar"
+        android:layout_alignParentBottom="true"
         android:id="@+id/stepperLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:ms_stepperType="progress_bar" />
-</LinearLayout>
+        android:layout_height="0dp"
+        app:ms_activeStepColor="@color/colorPrimary"
+        app:ms_backButtonColor="@color/colorPrimary"
+        app:ms_backButtonText="QUAY LẠI"
+        app:ms_completeButtonText="HOÀN TẤT"
+        app:ms_nextButtonColor="@color/colorPrimary"
+        app:ms_nextButtonText="TIẾP THEO"
+        app:ms_stepperType="dots" />
+</RelativeLayout>

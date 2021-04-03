@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.dooanne.R;
@@ -27,7 +28,6 @@ public class CreateDeckFragment extends BaseFragment implements StepperLayout.St
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_create_deck, container, false);
 
-
         return view;
     }
 
@@ -38,7 +38,6 @@ public class CreateDeckFragment extends BaseFragment implements StepperLayout.St
     }
 
     public void showCreateDeckFragment(View view) {
-        Toast.makeText(getActivity(),"A",Toast.LENGTH_SHORT).show();
         mStepperLayout = (StepperLayout) view.findViewById(R.id.stepperLayout);
         mStepperLayout.setAdapter(new StepperAdapter(getChildFragmentManager(), requireActivity()));
     }

@@ -3,26 +3,27 @@
     <item
         android:id="@+id/deckFragment"
         android:enabled="true"
-        android:icon="@drawable/ic_decks"
+        android:icon="@drawable/deck_selector"
         android:title="@string/decks"/>
     <item
-        android:id="@+id/exploreFragment"
+        android:id="@+id/favoriteFragment"
         android:enabled="true"
-        android:icon="@drawable/ic_explore"
-        android:title="@string/explore"/>
+        android:icon="@drawable/favorite_selector"
+        android:title="@string/favorite"/>
+    <item
+        android:id="@+id/createFragment"
+        android:enabled="true"
+        android:icon="@drawable/create_selector"
+        android:title="@string/create"/>
     <item
         android:id="@+id/meFragment"
         android:enabled="true"
-        android:icon="@drawable/ic_user"
+        android:icon="@drawable/me_selector"
         android:title="@string/me"/>
-    <item
-        android:id="@+id/upgradeFragment"
-        android:enabled="true"
-        android:icon="@drawable/ic_crown"
-        android:title="@string/upgrade"/>
     <item
         android:id="@+id/settingsFragment"
         android:enabled="true"
-        android:icon="@drawable/ic_settings"
+        android:icon="@drawable/settings_selector"
         android:title="@string/settings"/>
+
 </menu>

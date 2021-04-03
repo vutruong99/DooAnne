@@ -21,7 +21,12 @@ public class AddWordsFragment extends BaseFragment implements Step {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_add_words, container, false);
 
+        initView(view);
         return view;
+    }
+
+    private void initView(View view) {
+
     }
 
     @Nullable
@@ -39,4 +44,5 @@ public class AddWordsFragment extends BaseFragment implements Step {
     public void onError(@NonNull VerificationError error) {
 
     }
+
 }

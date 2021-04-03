@@ -109,7 +109,7 @@ public class TutorialFragment extends BaseFragment {
 
         @Override
         public View setViewForPosition(int position) {
-            View customView = getLayoutInflater().inflate(R.layout.intro_slide_layout, null);
+            View customView = getLayoutInflater().inflate(R.layout.intro_slide_layout,  null);
             //set view attributes here
             TextView title = customView.findViewById(R.id.slide_title);
             RelativeLayout slideBackground = customView.findViewById(R.id.slideBackground);

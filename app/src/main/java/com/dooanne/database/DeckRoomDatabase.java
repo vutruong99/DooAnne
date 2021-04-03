@@ -36,16 +36,16 @@ public abstract class DeckRoomDatabase extends RoomDatabase {
                 }
             }
 //                            .createFromAsset("databases/deck_database.db")
-//                            .addMigrations(MIGRATION_1_2)
+
         }
         return INSTANCE;
     }
 
-    static final Migration MIGRATION_1_2 = new Migration(1,2) { // From version 1 to version 2
-        @Override
-        public void migrate(@NonNull SupportSQLiteDatabase database) {
-        }
-    };
+//    static final Migration MIGRATION_1_2 = new Migration(1,2) { // From version 1 to version 2
+//        @Override
+//        public void migrate(@NonNull SupportSQLiteDatabase database) {
+//        }
+//    };
 
     private static final RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback() {
         @Override

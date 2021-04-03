@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,56 +8,114 @@
 
     <TextView
         android:id="@+id/deckNameTV"
-        android:layout_margin="@dimen/_16sdp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/deckNamET"
+        android:layout_marginStart="@dimen/_16sdp"
+        android:layout_marginEnd="@dimen/_16sdp"
+        android:layout_marginTop="@dimen/_4sdp"
+        android:layout_marginBottom="@dimen/_4sdp"
+        android:fontFamily="@font/raleway_bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
-        android:textSize="@dimen/_18ssp"
-        android:text="Tên bộ"/>
+        android:textSize="@dimen/_16ssp"
+        android:text="@string/deck_name"/>
 
-    <EditText
-        android:imeOptions="actionDone"
-        android:textCursorDrawable="@null"
-        android:layout_margin="@dimen/_16sdp"
-        android:padding="@dimen/_8sdp"
-        android:textSize="@dimen/_20sdp"
-        android:inputType="text"
-        android:textColor="@color/black"
-        android:maxLines="1"
-        android:background="@drawable/edit_text_border"
-        android:id="@+id/deckNamET"
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_below="@id/deckNameTV"
+        android:layout_marginStart="@dimen/_16sdp"
+        android:layout_marginEnd="@dimen/_16sdp"
+        app:layout_constraintTop_toBottomOf="@id/deckNameTV"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/deckNameTV"
+        android:id="@+id/deckNamET"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_64sdp"/>
+        android:layout_height="wrap_content"
+        android:hint="@string/please_name"
+        app:counterMaxLength="25"
+        app:counterEnabled="true"
+        app:errorEnabled="true"
+        app:helperText="Tối đa 25 ký tự"
+        app:helperTextTextAppearance="?attr/textAppearanceCaption"
+        app:helperTextEnabled="true"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_marginLeft="@dimen/_16sdp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:inputType="text"
+            android:imeOptions="actionNext"
+            android:maxLines="1"
+            android:textSize="@dimen/_14ssp"
+            android:maxLength="25"
+            android:fontFamily="@font/raleway_medium"
+            android:layout_height="@dimen/_52sdp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <TextView
-        android:id="@+id/deckColorTV"
-        app:layout_constraintBottom_toTopOf="@id/colorPickerBtn"
-        android:layout_margin="@dimen/_16sdp"
-        app:layout_constraintTop_toBottomOf="@id/deckNamET"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:id="@+id/deckDescriptionTV"
+        android:layout_marginBottom="@dimen/_4sdp"
+        android:layout_marginStart="@dimen/_16sdp"
+        android:layout_marginEnd="@dimen/_16sdp"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:layout_below="@id/deckNamET"
+        android:fontFamily="@font/raleway_bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
-        android:textSize="@dimen/_18ssp"
-        android:text="Chọn màu"/>
+        android:textSize="@dimen/_16ssp"
+        android:text="@string/description"/>
 
-    <com.google.android.material.button.MaterialButton
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_marginStart="@dimen/_16sdp"
+        android:layout_marginEnd="@dimen/_16sdp"
+        android:layout_below="@id/deckDescriptionTV"
+        android:id="@+id/deckDescriptionET"
         android:layout_width="match_parent"
-        android:id="@+id/colorPickerBtn"
-        android:layout_height="@dimen/_70sdp"
-        app:layout_constraintTop_toBottomOf="@id/deckColorTV"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_margin="@dimen/_16sdp"/>
+        android:layout_height="wrap_content"
+        app:helperText="Tối đa 200 ký tự"
+        app:counterEnabled="true"
+        app:counterMaxLength="200"
+        app:errorEnabled="true"
+        app:helperTextEnabled="true"
+        android:hint="@string/please_describe"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:id="@+id/deckDescriptionET_sub"
+            android:inputType="textMultiLine"
+            android:gravity="top"
+            android:maxLength="200"
+            android:textSize="@dimen/_14ssp"
+            android:fontFamily="@font/raleway_medium"
+            android:layout_height="@dimen/_88sdp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <!--    <TextView-->
+<!--        android:id="@+id/deckColorTV"-->
+<!--        android:fontFamily="@font/raleway_bold"-->
+<!--        app:layout_constraintBottom_toTopOf="@id/colorPickerBtn"-->
+<!--        android:layout_margin="@dimen/_16sdp"   -->
+<!--        app:layout_constraintTop_toBottomOf="@id/deckNamET"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:textSize="@dimen/_18ssp"-->
+<!--        android:text="Chọn màu"/>-->
+
+<!--    <com.google.android.material.button.MaterialButton-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:id="@+id/colorPickerBtn"-->
+<!--        android:layout_height="@dimen/_52sdp"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/deckColorTV"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        android:layout_margin="@dimen/_16sdp"/>-->
 
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

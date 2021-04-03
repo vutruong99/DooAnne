@@ -1,4 +1,4 @@
-package com.dooanne.viewmodel;
+package com.dooanne.adapters;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -6,8 +6,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,14 +16,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.dooanne.R;
 import com.dooanne.model.Deck;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 
 public class DeckAdapter extends RecyclerView.Adapter<DeckAdapter.DeckViewHolder> {
 
-
+    private Context context;
     private List<Deck> mDecks;
     private final LayoutInflater mInflater;
 
@@ -37,14 +36,17 @@ public class DeckAdapter extends RecyclerView.Adapter<DeckAdapter.DeckViewHolder
     public DeckAdapter(Context context, ItemClickListener itemClickListener) {
         mInflater = LayoutInflater.from(context);
         this.mItemClickListener = itemClickListener;
+        this.context = context;
     }
 
     class DeckViewHolder extends RecyclerView.ViewHolder {
         TextView deckName;
         ImageView deckImage;
         ConstraintLayout deckView;
+        FrameLayout deckShadow;
         public DeckViewHolder(@NonNull View itemView) {
             super(itemView);
+            deckShadow = itemView.findViewById(R.id.deckShadow);
             deckName = itemView.findViewById(R.id.deckName);
             deckImage = itemView.findViewById(R.id.deckImage);
             deckView = itemView.findViewById(R.id.deck_view);
@@ -72,8 +74,9 @@ public class DeckAdapter extends RecyclerView.Adapter<DeckAdapter.DeckViewHolder
         if (mDecks != null) {
             Deck deck = mDecks.get(position);
             holder.deckName.setText(deck.getName());
-            holder.deckView.setBackgroundColor(Color.parseColor(deck.getColor()));
-            Picasso.get().load(deck.getImageLink()).into(holder.deckImage);
+            holder.deckView.setBackgroundColor(Color.parseColor("#" + deck.getColor()));
+            holder.deckShadow.setBackgroundColor(Color.parseColor("#80" + deck.getColor()));
+            holder.deckImage.setImageResource(context.getResources().getIdentifier(deck.getImageName(),"drawable", context.getPackageName()));
         } else {
             Log.i("DooAnne: Cards", "No Decks");
         }

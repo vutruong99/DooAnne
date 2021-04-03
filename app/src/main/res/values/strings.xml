@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">DooAnne</string>
-    <string name="decks">Bộ</string>
+    <string name="decks">Bộ bài</string>
     <string name="explore">Khám phá</string>
     <string name="me">Mình</string>
     <string name="settings">Cài đặt</string>
@@ -11,4 +11,11 @@
     <string name="pass">BỎ QUA</string>
     <string name="correct">CHÍNH XÁC</string>
     <string name="create_new_deck">Tạo bộ mới</string>
+    <string name="favorite">Yêu thích</string>
+    <string name="create">Sáng tạo</string>
+    <string name="please_describe">Mô tả bộ bài và cách chơi</string>
+    <string name="description">Mô tả</string>
+    <string name="deck_name">Tên bộ</string>
+    <string name="please_name">Đặt tên cho bộ bài của bạn</string>
+    <string name="custom_deck_text">Hãy sáng tạo những bộ bài mới cho riêng minh!</string>
 </resources>

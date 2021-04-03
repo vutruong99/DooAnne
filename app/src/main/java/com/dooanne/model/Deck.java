@@ -17,11 +17,17 @@ public class Deck {
     @ColumnInfo(name = "name")
     private String name;
 
+    @ColumnInfo(name= "eng_name")
+    private String engName;
+
     @ColumnInfo(name = "description")
     private String description;
 
-    @ColumnInfo(name = "imageLink")
-    private int imageLink;
+    @ColumnInfo(name = "eng_description")
+    private String engDescription;
+
+    @ColumnInfo(name = "imageName")
+    private String imageName;
 
     @ColumnInfo(name = "color")
     private String color;
@@ -32,22 +38,24 @@ public class Deck {
     @ColumnInfo (name = "isFavorite")
     private boolean isFavorite;
 
-    @ColumnInfo (name = "downloads")
-    private int downloads;
+    @ColumnInfo (name = "isVietnamese")
+    private boolean isVietnamese;
 
     @ColumnInfo (name = "cards")
     private ArrayList<String> cards;
 
-    public Deck(int id, String name, String description, int imageLink, String color,
-                boolean isPremium, boolean isFavorite, int downloads, ArrayList<String> cards) {
+    public Deck(int id, String name, String engName, String description, String engDescription, String imageName,
+                String color, boolean isPremium, boolean isFavorite, boolean isVietnamese, ArrayList<String> cards) {
         this.id = id;
         this.name = name;
+        this.engName = engName;
         this.description = description;
-        this.imageLink = imageLink;
+        this.engDescription = engDescription;
+        this.imageName = imageName;
         this.color = color;
         this.isPremium = isPremium;
         this.isFavorite = isFavorite;
-        this.downloads = downloads;
+        this.isVietnamese = isVietnamese;
         this.cards = cards;
     }
 
@@ -75,36 +83,12 @@ public class Deck {
         this.description = description;
     }
 
-    public int getImageLink() {
-        return imageLink;
+    public String getImageName() {
+        return imageName;
     }
 
-    public void setImageLink(int image) {
-        this.imageLink = image;
-    }
-
-    public boolean isPremium() {
-        return isPremium;
-    }
-
-    public void setPremium(boolean premium) {
-        isPremium = premium;
-    }
-
-    public int getDownloads() {
-        return downloads;
-    }
-
-    public void setDownloads(int downloads) {
-        this.downloads = downloads;
-    }
-
-    public ArrayList<String> getCards() {
-        return cards;
-    }
-
-    public void setCards(ArrayList<String> cards) {
-        this.cards = cards;
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
     }
 
     public String getColor() {
@@ -115,11 +99,51 @@ public class Deck {
         this.color = color;
     }
 
+    public boolean isPremium() {
+        return isPremium;
+    }
+
+    public void setPremium(boolean premium) {
+        isPremium = premium;
+    }
+
     public boolean isFavorite() {
         return isFavorite;
     }
 
     public void setFavorite(boolean favorite) {
         isFavorite = favorite;
+    }
+
+    public boolean isVietnamese() {
+        return isVietnamese;
+    }
+
+    public void setVietnamese(boolean vietnamese) {
+        isVietnamese = vietnamese;
+    }
+
+    public ArrayList<String> getCards() {
+        return cards;
+    }
+
+    public void setCards(ArrayList<String> cards) {
+        this.cards = cards;
+    }
+
+    public String getEngName() {
+        return engName;
+    }
+
+    public void setEngName(String engName) {
+        this.engName = engName;
+    }
+
+    public String getEngDescription() {
+        return engDescription;
+    }
+
+    public void setEngDescription(String engDescription) {
+        this.engDescription = engDescription;
     }
 }

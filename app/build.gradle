@@ -86,5 +86,7 @@ dependencies {
 
     implementation 'petrov.kristiyan:colorpicker-library:1.1.10'
 
+    implementation 'com.github.rubensousa:gravitysnaphelper:2.2.1'
+
 
 }

@@ -1,6 +1,5 @@
 package com.dooanne.ui.fragments;
 
-import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
 
@@ -8,36 +7,30 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
+import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.ScrollView;
-import android.widget.Toast;
 
 import com.dooanne.DeckInfoDialog;
 import com.dooanne.ScrollToTop;
 import com.dooanne.ui.activities.BaseActivity;
 import com.dooanne.viewmodel.CardsViewModel;
-import com.dooanne.viewmodel.DeckAdapter;
+import com.dooanne.adapters.DeckAdapter;
 import com.dooanne.R;
 import com.dooanne.model.Deck;
 import com.dooanne.viewmodel.DeckViewModel;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.card.MaterialCardView;
 import com.synnapps.carouselview.CarouselView;
-import com.synnapps.carouselview.ImageListener;
+import com.synnapps.carouselview.CirclePageIndicator;
+import com.synnapps.carouselview.ViewListener;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.List;
 
 
@@ -52,8 +45,8 @@ public class DeckFragment extends Fragment  {
     private ImageView searchButton;
     private ImageView mHelpButton;
     private ScrollView scrollView;
-
-    int[] sampleImages = {R.drawable.beach1, R.drawable.beach2, R.drawable.river, R.drawable.lake, R.drawable.flowers};
+    private View mScrollSeparator;
+    int sampleImages = R.drawable.picture;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -72,14 +65,21 @@ public class DeckFragment extends Fragment  {
         initCarouselView(view);
         initView(view);
 
+
+
         return view;
     }
 
     private void initView(View view) {
         BaseActivity baseActivity =  (BaseActivity) requireActivity();
+
         baseActivity.setListener(mScrollListener);
         scrollView = view.findViewById(R.id.scrollView);
         scrollView.smoothScrollTo(0,0);
+        mScrollSeparator = requireActivity().findViewById(R.id.scrollSeparator);
+
+        scrollView.getViewTreeObserver().addOnScrollChangedListener(showSeparatorListener);
+
         searchButton = requireActivity().findViewById(R.id.search_button);
         searchButton.setOnClickListener(searchClickListener);
         mHelpButton = requireActivity().findViewById(R.id.help);
@@ -112,11 +112,12 @@ public class DeckFragment extends Fragment  {
 
     private void initCarouselView(View view) {
         mCarouselView = view.findViewById(R.id.carousel_view);
-        mCarouselView.setPageCount(sampleImages.length);
-        mCarouselView.setImageListener(imageListener);
+        mCarouselView.setPageCount(5);
+        mCarouselView.setViewListener(viewListener);
+        CirclePageIndicator circlePageIndicator = view.findViewById(R.id._image_carousel_indicator);
+        circlePageIndicator.setViewPager(mCarouselView.getContainerViewPager());
     }
 
-    ImageListener imageListener = (position, imageView) -> imageView.setImageResource(sampleImages[position]);
 
     private void initRecyclerView(View view) {
         mRecyclerView = view.findViewById(R.id.recycler_view_deck);
@@ -190,12 +191,14 @@ public class DeckFragment extends Fragment  {
         cards.add("Bơi");
         String desc = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, " +
                 "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
-        deckList.add(new Deck(1,"Thể thao",desc,this.getResources().getIdentifier("sports","drawable",requireActivity().getPackageName()),"#6495ED",false,false,1,cards));
-        deckList.add(new Deck(1,"Người nổi tiếng",desc,this.getResources().getIdentifier("teamwork","drawable",requireActivity().getPackageName()),"#9FE2BF",false,false,1,cards));
-        deckList.add(new Deck(1,"Nghề nghiệp",desc,this.getResources().getIdentifier("suitcase","drawable",requireActivity().getPackageName()),"#DE3163",false,false,1,cards));
-        deckList.add(new Deck(1,"Ẩm thực Việt Nam",desc,this.getResources().getIdentifier("diet","drawable",requireActivity().getPackageName()),"#FFBF00",false,false,1,cards));
-        deckList.add(new Deck(1,"Thương hiệu",desc,this.getResources().getIdentifier("brand","drawable",requireActivity().getPackageName()),"#FF7F50",false,false,1,cards));
+        deckList.add(new Deck(1,"Thể thao","Sport",desc,desc,"ball","FF5C5C",false,false,true,cards));
+        deckList.add(new Deck(1,"Người nổi tiếng","Famous",desc,desc,"boat","ffc13b",false,false,true,cards));
+        deckList.add(new Deck(1,"Nghề nghiệp", "job",desc,desc,"watermelon","228B22",false,false,true,cards));
+        deckList.add(new Deck(1,"Ẩm thực Việt Nam","food",desc,desc,"ukulele","FF85CD",false,false,true,cards));
+        deckList.add(new Deck(1,"Thương hiệu","brand",desc,desc,"suitcase","FF7F50",false,false,true,cards));
     }
+
+//    this.getResources().getIdentifier("swimming_suit","drawable",requireActivity().getPackageName())
 
     private void createDecks() {
     }
@@ -230,4 +233,38 @@ public class DeckFragment extends Fragment  {
         }
     };
 
+
+    ViewListener viewListener = new ViewListener() {
+
+        @Override
+        public View setViewForPosition(int position) {
+            View customView = getLayoutInflater().inflate(R.layout.carousel_top_layout, null);
+
+            return customView;
+        }
+    };
+
+    ViewTreeObserver.OnScrollChangedListener showSeparatorListener = new ViewTreeObserver.OnScrollChangedListener() {
+        @Override
+        public void onScrollChanged() {
+            if (scrollView.getScrollY() != 0 && isVisible()) {
+                mScrollSeparator.setVisibility(View.VISIBLE);
+            } else {
+                mScrollSeparator.setVisibility(View.INVISIBLE);
+            }
+        }
+    };
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mScrollSeparator.setVisibility(View.INVISIBLE);
+        scrollView.getViewTreeObserver().removeOnScrollChangedListener(showSeparatorListener);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        scrollView.getViewTreeObserver().addOnScrollChangedListener(showSeparatorListener);
+    }
 }

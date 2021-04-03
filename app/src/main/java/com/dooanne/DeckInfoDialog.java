@@ -2,6 +2,7 @@ package com.dooanne;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
@@ -24,9 +25,11 @@ import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.dooanne.model.Deck;
+import com.dooanne.ui.activities.BaseActivity;
 import com.dooanne.ui.fragments.GameFragment;
 import com.dooanne.viewmodel.CardsViewModel;
 import com.dooanne.viewmodel.DeckViewModel;
@@ -34,6 +37,7 @@ import com.google.android.material.button.MaterialButton;
 
 public class DeckInfoDialog extends AppCompatDialogFragment {
 
+    Context context;
     CardsViewModel mCardsViewModel;
     DeckViewModel mDeckViewModel;
     ImageView deckLogo;
@@ -57,17 +61,14 @@ public class DeckInfoDialog extends AppCompatDialogFragment {
 
 
         init(view);
-        mCardsViewModel.getCurrentDeck().observe(requireActivity(), deck -> {
-            currentDeck = deck;
-            deckDescription.setText(currentDeck.getDescription());
-            deckLogo.setImageResource(currentDeck.getImageLink());
-            deckName.setText(currentDeck.getName());
-            playButton.setTextColor(Color.parseColor(currentDeck.getColor()));
-            Drawable backgroundDrawable = deckBackground.getBackground();
-            backgroundDrawable.setColorFilter(Color.parseColor(currentDeck.getColor()), PorterDuff.Mode.SRC_ATOP);
-            liked = currentDeck.isFavorite();
-
+        mCardsViewModel.getCurrentDeck().observe(requireActivity(), new Observer<Deck>() {
+            @Override
+            public void onChanged(Deck deck) {
+                currentDeck = deck;
+            }
         });
+
+        showDeckInfo();
 
         builder.setView(view);
 
@@ -79,6 +80,16 @@ public class DeckInfoDialog extends AppCompatDialogFragment {
 //        window.setGravity(Gravity.CENTER);
 
         return dialog;
+    }
+
+    private void showDeckInfo() {
+        deckDescription.setText(currentDeck.getDescription());
+        deckLogo.setImageResource(DeckInfoDialog.this.requireActivity().getResources().getIdentifier(currentDeck.getImageName(), "drawable", DeckInfoDialog.this.requireActivity().getPackageName()));
+        deckName.setText(currentDeck.getName());
+        playButton.setTextColor(Color.parseColor("#" + currentDeck.getColor()));
+        Drawable backgroundDrawable = deckBackground.getBackground();
+        backgroundDrawable.setColorFilter(Color.parseColor("#" + currentDeck.getColor()), PorterDuff.Mode.SRC_ATOP);
+        liked = currentDeck.isFavorite();
     }
 
     private void init(View view) {
