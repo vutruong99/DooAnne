@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentManager;
 
 import com.dooanne.ui.fragments.DeckMetaDataFragment;
-import com.dooanne.ui.fragments.AddWordsFragment;
+import com.dooanne.ui.fragments.DeckColorFragment;
 import com.stepstone.stepper.Step;
 import com.stepstone.stepper.adapter.AbstractFragmentStepAdapter;
 import com.stepstone.stepper.viewmodel.StepViewModel;
@@ -28,7 +28,7 @@ public class StepperAdapter extends AbstractFragmentStepAdapter {
                 step1.setArguments(b1);
                 return step1;
             case 1:
-                AddWordsFragment step2 = new AddWordsFragment();
+                DeckColorFragment step2 = new DeckColorFragment();
                 Bundle b2 = new Bundle();
                 b2.putInt("CURRENT_STEP_POSITION_KEY", position);
                 step2.setArguments(b2);

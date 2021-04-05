@@ -18,4 +18,6 @@
     <string name="deck_name">Tên bộ</string>
     <string name="please_name">Đặt tên cho bộ bài của bạn</string>
     <string name="custom_deck_text">Hãy sáng tạo những bộ bài mới cho riêng minh!</string>
+    <string name="icon">Biểu tượng</string>
+    <string name="color">Màu sắc</string>
 </resources>

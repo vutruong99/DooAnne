@@ -8,10 +8,9 @@
 
     <TextView
         android:id="@+id/deckNameTV"
-        android:layout_marginStart="@dimen/_16sdp"
-        android:layout_marginEnd="@dimen/_16sdp"
         android:layout_marginTop="@dimen/_4sdp"
         android:layout_marginBottom="@dimen/_4sdp"
+        android:layout_centerHorizontal="true"
         android:fontFamily="@font/raleway_bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -55,8 +54,7 @@
     <TextView
         android:id="@+id/deckDescriptionTV"
         android:layout_marginBottom="@dimen/_4sdp"
-        android:layout_marginStart="@dimen/_16sdp"
-        android:layout_marginEnd="@dimen/_16sdp"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/_16sdp"
         android:layout_below="@id/deckNamET"
         android:fontFamily="@font/raleway_bold"
