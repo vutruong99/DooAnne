@@ -7,6 +7,7 @@
     <TextView
         android:id="@+id/welcomeText"
         android:paddingStart="@dimen/_16sdp"
+        android:gravity="start"
         android:paddingTop="@dimen/_4sdp"
         android:paddingEnd="@dimen/_16sdp"
         app:layout_constraintTop_toTopOf="parent"
@@ -19,6 +20,7 @@
         android:fontFamily="@font/raleway_medium"
         android:textSize="@dimen/_16ssp"
         android:text="@string/custom_deck_text"/>
+
     <com.google.android.material.button.MaterialButton
         android:textSize="@dimen/_16ssp"
         android:padding="@dimen/_8sdp"

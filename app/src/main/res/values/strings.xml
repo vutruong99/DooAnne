@@ -20,4 +20,11 @@
     <string name="custom_deck_text">Hãy sáng tạo những bộ bài mới cho riêng minh!</string>
     <string name="icon">Biểu tượng</string>
     <string name="color">Màu sắc</string>
+    <string name="word_list">Danh sách từ</string>
+    <string name="add_word">Thêm từ</string>
+    <string name="add_word_please">Thêm từ vào bộ</string>
+    <string name="Vietnamese">Thuần Việt</string>
+    <string name="all_decks">Tất cả</string>
+    <string name="international">Quốc tế</string>
+    <string name="vietnamese_decks">Thuần Việt</string>
 </resources>

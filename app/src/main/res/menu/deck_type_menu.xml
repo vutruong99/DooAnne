@@ -1,0 +1,8 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/allDecks"
+        android:title="@string/all_decks" />
+    <item android:id="@+id/vietnameseDecks"
+        android:title="@string/vietnamese_decks" />
+    <item android:id="@+id/internationalDecks"
+        android:title="@string/international" />
+</menu>

@@ -12,11 +12,16 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.ScrollView;
+import android.widget.Toast;
 
 import com.dooanne.DeckInfoDialog;
 import com.dooanne.ScrollToTop;
@@ -34,7 +39,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class DeckFragment extends Fragment  {
+public class DeckFragment extends Fragment implements PopupMenu.OnMenuItemClickListener {
 
     private ArrayList<Deck> deckList;
     private CarouselView mCarouselView;
@@ -46,6 +51,7 @@ public class DeckFragment extends Fragment  {
     private ImageView mHelpButton;
     private ScrollView scrollView;
     private View mScrollSeparator;
+    private ImageView deckFilter;
     int sampleImages = R.drawable.picture;
 
     @Override
@@ -58,7 +64,7 @@ public class DeckFragment extends Fragment  {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_deck, container, false);
-
+        setHasOptionsMenu(true);
         createDecks();
         getDecksFromDatabase();
         initRecyclerView(view);
@@ -77,7 +83,13 @@ public class DeckFragment extends Fragment  {
         scrollView = view.findViewById(R.id.scrollView);
         scrollView.smoothScrollTo(0,0);
         mScrollSeparator = requireActivity().findViewById(R.id.scrollSeparator);
-
+        deckFilter = view.findViewById(R.id.deckFilter);
+        deckFilter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPopupMenu(v);
+            }
+        });
         scrollView.getViewTreeObserver().addOnScrollChangedListener(showSeparatorListener);
 
         searchButton = requireActivity().findViewById(R.id.search_button);
@@ -96,6 +108,30 @@ public class DeckFragment extends Fragment  {
         });
 
 
+    }
+
+    private void showPopupMenu(View v) {
+        PopupMenu popupMenu = new PopupMenu(requireActivity(), v);
+        popupMenu.setOnMenuItemClickListener(this);
+        popupMenu.inflate(R.menu.deck_type_menu);
+        popupMenu.show();
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.allDecks:
+                Toast.makeText(requireActivity(), "Tất cả", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.vietnameseDecks:
+                Toast.makeText(requireActivity(), "Việt Nam", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.internationalDecks:
+                Toast.makeText(requireActivity(), "Thế giới", Toast.LENGTH_SHORT).show();
+                return true;
+            default:
+                return false;
+        }
     }
 
     private void getDecksFromDatabase() {
@@ -200,7 +236,9 @@ public class DeckFragment extends Fragment  {
 
 //    this.getResources().getIdentifier("swimming_suit","drawable",requireActivity().getPackageName())
 
+
     private void createDecks() {
+
     }
 
     private final DeckAdapter.ItemClickListener mItemClickListener = new DeckAdapter.ItemClickListener() {
@@ -267,4 +305,5 @@ public class DeckFragment extends Fragment  {
         super.onStart();
         scrollView.getViewTreeObserver().addOnScrollChangedListener(showSeparatorListener);
     }
+
 }

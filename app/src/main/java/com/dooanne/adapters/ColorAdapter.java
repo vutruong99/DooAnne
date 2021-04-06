@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.dooanne.R;
 import com.dooanne.model.CustomColor;
-import com.dooanne.model.Icon;
 import com.mikhaellopez.circleview.CircleView;
 
 import java.util.List;

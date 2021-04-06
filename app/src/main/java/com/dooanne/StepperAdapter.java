@@ -7,6 +7,7 @@ import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentManager;
 
+import com.dooanne.ui.fragments.AddWordsFragment;
 import com.dooanne.ui.fragments.DeckMetaDataFragment;
 import com.dooanne.ui.fragments.DeckColorFragment;
 import com.stepstone.stepper.Step;
@@ -33,13 +34,19 @@ public class StepperAdapter extends AbstractFragmentStepAdapter {
                 b2.putInt("CURRENT_STEP_POSITION_KEY", position);
                 step2.setArguments(b2);
                 return step2;
+            case 2:
+                AddWordsFragment step3 = new AddWordsFragment();
+                Bundle b3 = new Bundle();
+                b3.putInt("CURRENT_STEP_POSITION_KEY",position);
+                step3.setArguments(b3);
+                return step3;
         }
         return null;
     }
 
     @Override
     public int getCount() {
-        return 2;
+        return 3;
     }
 
 
@@ -54,6 +61,10 @@ public class StepperAdapter extends AbstractFragmentStepAdapter {
             case 1:
                 return new StepViewModel.Builder(context)
                         .setTitle("Tabs 2") //can be a CharSequence instead
+                        .create();
+            case 2:
+                return new StepViewModel.Builder(context)
+                        .setTitle("Tabs 3")
                         .create();
         }
         return null;

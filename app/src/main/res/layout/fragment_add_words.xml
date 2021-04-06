@@ -1,0 +1,71 @@
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/wordListTV"
+        android:layout_marginBottom="@dimen/_4sdp"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/raleway_bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_16ssp"
+        android:text="@string/word_list"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginStart="@dimen/_16sdp"
+        android:layout_marginEnd="@dimen/_16sdp"
+        android:background="@drawable/edit_text_border"
+        android:layout_below="@id/wordListTV"
+        android:id="@+id/wordListRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_120sdp" />
+
+    <TextView
+        android:id="@+id/addWordTV"
+        android:layout_below="@id/wordListRecyclerView"
+        android:layout_marginBottom="@dimen/_4sdp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:fontFamily="@font/raleway_bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_16ssp"
+        android:text="@string/add_word"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_marginStart="@dimen/_16sdp"
+        android:layout_marginEnd="@dimen/_16sdp"
+        android:layout_below="@id/addWordTV"
+        android:id="@+id/addWordET"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:helperText="Tối đa 40 ký tự"
+        app:counterEnabled="true"
+        app:counterMaxLength="40"
+        app:endIconMode="custom"
+        app:endIconDrawable="@drawable/ic_send_black_24dp"
+        app:endIconTint="@color/colorPrimary"
+        app:helperTextEnabled="true"
+        android:hint="@string/add_word_please"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_gravity="start"
+            android:id="@+id/addWordET_sub"
+            android:inputType="text"
+            android:gravity="top"
+            android:imeOptions="actionDone"
+            android:maxLength="40"
+            android:textSize="@dimen/_14ssp"
+            android:fontFamily="@font/raleway_medium"
+            android:layout_height="@dimen/_52sdp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+</RelativeLayout>

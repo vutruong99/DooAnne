@@ -10,8 +10,8 @@
         android:layout_centerInParent="true"
         android:src="@drawable/boat"
         android:id="@+id/circleImageView"
-        android:layout_width="@dimen/_70sdp"
-        android:layout_height="@dimen/_70sdp"
+        android:layout_width="@dimen/_64sdp"
+        android:layout_height="@dimen/_64sdp"
         app:civ_border_color="@color/newBlack"
         app:civ_border_width="@dimen/_2sdp"/>
 

@@ -21,7 +21,6 @@ import com.dooanne.adapters.IconAdapter;
 import com.dooanne.model.CustomColor;
 import com.dooanne.model.Icon;
 import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper;
-import com.google.android.material.card.MaterialCardView;
 import com.stepstone.stepper.Step;
 import com.stepstone.stepper.VerificationError;
 

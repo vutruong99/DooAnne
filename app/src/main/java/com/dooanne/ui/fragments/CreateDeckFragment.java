@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.dooanne.R;
@@ -21,6 +22,7 @@ import com.stepstone.stepper.VerificationError;
 public class CreateDeckFragment extends BaseFragment implements StepperLayout.StepperListener {
 
     private StepperLayout mStepperLayout;
+    private ImageView closeButton;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -38,8 +40,16 @@ public class CreateDeckFragment extends BaseFragment implements StepperLayout.St
     }
 
     public void showCreateDeckFragment(View view) {
+        closeButton = view.findViewById(R.id.closeCreateDeckFragment);
+        closeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                requireActivity().getSupportFragmentManager().popBackStack();
+            }
+        });
         mStepperLayout = (StepperLayout) view.findViewById(R.id.stepperLayout);
         mStepperLayout.setAdapter(new StepperAdapter(getChildFragmentManager(), requireActivity()));
+        mStepperLayout.setOffscreenPageLimit(3);
     }
 
     @Override

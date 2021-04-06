@@ -1,0 +1,47 @@
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:id="@+id/wordContent"
+        android:paddingStart="@dimen/_16sdp"
+        android:paddingEnd="@dimen/_2sdp"
+        android:paddingBottom="@dimen/_4sdp"
+        android:text="xem nao mdaskdjasdiajsdidajsidasđjáoidjasdadsiasjd"
+        android:layout_toStartOf="@id/deleteWord"
+        android:layout_alignParentStart="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/raleway_medium"
+        android:textSize="@dimen/_14ssp"
+        android:textColor="@color/newBlack"
+        android:layout_toLeftOf="@id/deleteWord"
+        android:layout_alignParentLeft="true"
+        android:paddingLeft="@dimen/_16sdp"
+        android:paddingRight="@dimen/_2sdp" />
+
+    <ImageView
+        android:paddingStart="0dp"
+        android:paddingEnd="@dimen/_16sdp"
+        android:paddingBottom="@dimen/_4sdp"
+        app:tint="@color/lightRed"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:id="@+id/deleteWord"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_close"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:paddingRight="@dimen/_16sdp"
+        android:paddingLeft="0dp" />
+
+    <View
+        android:layout_below="@id/wordContent"
+        android:visibility="visible"
+        android:id="@+id/scrollSeparator"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_2sdp"
+        android:background="@drawable/scroll_separator_shadow" />
+</RelativeLayout>

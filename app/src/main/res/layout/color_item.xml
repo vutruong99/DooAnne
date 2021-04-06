@@ -7,8 +7,8 @@
 
     <com.mikhaellopez.circleview.CircleView
         android:id="@+id/circleView"
-        android:layout_width="@dimen/_72sdp"
-        android:layout_height="@dimen/_72sdp"
+        android:layout_width="@dimen/_64sdp"
+        android:layout_height="@dimen/_63sdp"
         android:layout_centerInParent="true"
         app:cv_color="@color/lightRed"
         xmlns:app="http://schemas.android.com/apk/res-auto" />

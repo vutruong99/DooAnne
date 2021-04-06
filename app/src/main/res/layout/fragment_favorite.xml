@@ -1,17 +1,35 @@
 <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <TextView
+        android:layout_marginBottom="@dimen/_16sdp"
+        android:id="@+id/welcomeText"
+        android:paddingStart="@dimen/_16sdp"
+        android:paddingTop="@dimen/_4sdp"
+        android:paddingEnd="@dimen/_16sdp"
+        android:gravity="start"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/recycler_view_deck"
         android:layout_width="wrap_content"
-        android:textSize="@dimen/_24ssp"
-        android:textColor="@color/black"
+        android:textColor="@color/newBlack"
         android:layout_height="wrap_content"
-        android:text="Bộ bài iu thík"/>
+        android:fontFamily="@font/raleway_medium"
+        android:textSize="@dimen/_16ssp"
+        android:text="Những bộ bài yêu thích của bạn"/>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:layoutAnimation="@anim/layout_animation"
+        android:id="@+id/recycler_view_deck"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/welcomeText"
+        tools:listitem="@layout/deck_item" />
 </androidx.constraintlayout.widget.ConstraintLayout>

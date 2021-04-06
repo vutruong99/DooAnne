@@ -11,6 +11,7 @@
 
 
     <RelativeLayout
+        android:isScrollContainer="false"
         android:id="@+id/create_deck_action_bar"
         android:layout_alignParentTop="true"
         android:layout_width="match_parent"
@@ -22,6 +23,7 @@
 
 
         <ImageView
+            android:id="@+id/closeCreateDeckFragment"
             android:focusable="true"
             android:clickable="true"
             app:tint="@color/black"

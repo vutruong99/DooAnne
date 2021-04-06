@@ -11,6 +11,7 @@ import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,6 +45,7 @@ public class GameFragment extends BaseFragment {
     int mCardPosition = 0;
     boolean isDeviceUp = true;
     TextView mTimer;
+    ImageView closeGame;
 
     // Game variables
     int mScore = 0;
@@ -109,6 +111,13 @@ public class GameFragment extends BaseFragment {
     }
 
     private void initViews(View view) {
+        closeGame = view.findViewById(R.id.closeGameButton);
+        closeGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                requireActivity().getSupportFragmentManager().popBackStack();
+            }
+        });
         mConstraintLayout = view.findViewById(R.id.gameBackground);
         mGameText = view.findViewById(R.id.gameText);
         mStartingTime = view.findViewById(R.id.startingTime);
